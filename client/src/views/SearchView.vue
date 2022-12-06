@@ -30,7 +30,6 @@ export default {
     return {
       searchData : "",
       searchResult : {},
-      // result:''
     }
   },
   
@@ -41,8 +40,6 @@ export default {
       let search = await this.$api("/api/search", {param:['%'+this.searchData+'%', '%'+this.searchData+'%', '%'+this.searchData+'%', '%'+this.searchData+'%', '%'+this.searchData+'%', '%'+this.searchData+'%', '%'+this.searchData+'%']})
       this.searchResult = search;
       let data = []
-
-      // console.log(search[0].id);
       if(search.length < 2) {
         data = [search[0].id]
       }
