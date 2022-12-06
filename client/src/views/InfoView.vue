@@ -1,34 +1,24 @@
 <template>
   <main class="mt-3">
-
     <div class="container bg-white ">
-      
       <div class="row g-3">
         <div class="col-xl-2"></div>
         <div class="col-xl-4"></div>
         <div class="col-xl-4">
           <form v-if="(mine)" class="float-end" role="search">
-            
-                <a class="navbar-brand" @click="edit(dailyLookInfo)" style="margin-right:10px">
-                  <img :src="editImg" alt="" width="24" height="24">
-                </a>
-                
-            
-                <a class="navbar-brand" @click="erase" style="cursor:pointer">
-                  <img :src="eraseImg" alt="" width="24" height="24">
-                </a>
-             
-            
+            <a class="navbar-brand" @click="edit(dailyLookInfo)" style="margin-right:10px">
+              <img :src="editImg" alt="" width="24" height="24">
+            </a>
+            <a class="navbar-brand" @click="erase" style="cursor:pointer">
+              <img :src="eraseImg" alt="" width="24" height="24">
+            </a>
           </form>
           <div v-else class="mt-5"></div>
         </div>
         <div class="col-xl-2"></div>
       </div>
     </div>
-    
-      
     <div class="container bg-white ">
-
       <div class="row g-3 mt-1">
         <div class="col-xl-2"></div>
         <div class="col-xl-auto">
@@ -78,7 +68,6 @@ export default {
     this.image = this.$route.query.image;
     this.getDailyLookInfo();
     if(this.$route.query.name===this.$store.state.user.name) this.mine = true;
-    // console.log(this.$route.query.id, this.$route.query.name);
   },
   methods: {
     async getDailyLookInfo() {
@@ -86,7 +75,6 @@ export default {
       if(dailyLookInfo.length > 0) {
         this.dailyLookInfo = dailyLookInfo[0];
       }
-      // console.log(this.dailyLookInfo)
     },
     erase() {
       const confirmed = confirm('정말 삭제하시겠습니까?');
@@ -102,7 +90,6 @@ export default {
       if (confirmed) {
         this.$router.push({path:'/edit', query:{id:this.dailyLookId}})
       } 
-
     }
   }
 }
