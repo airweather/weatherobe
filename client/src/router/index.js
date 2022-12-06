@@ -10,7 +10,6 @@ import Login from '../views/LoginView.vue'
 import signUp from '../views/SignupView.vue'
 import InfoEdit from '../views/InfoEditView.vue'
 import SearchResult from '../views/SearchResult.vue'
-// import Dropzone from '../views/DropzoneView.vue'
 
 const routes = [
   {
@@ -68,11 +67,6 @@ const routes = [
     name: 'SearchResult',
     component: SearchResult
   },
-  // {
-  //   path: '/dropzone',
-  //   name: 'Dropzone',
-  //   component: Dropzone
-  // }
 ]
 
 const router = createRouter({
