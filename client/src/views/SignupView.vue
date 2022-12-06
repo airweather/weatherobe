@@ -32,10 +32,9 @@
           <input type="password" class="form-control" id="password" placeholder="Password" v-model="passwordConfirm">
           <label for="floatingPassword">Password</label>
         </div>
-        <small v-if="(passwordConfirm.length > 5 && password !== passwordConfirm)" style="color:red;">
-          <b>비밀번호가 일치하지 않습니다.</b>
-        </small>
-        
+          <small v-if="(passwordConfirm.length > 5 && password !== passwordConfirm)" style="color:red;">
+            <b>비밀번호가 일치하지 않습니다.</b>
+          </small>
         <div class="mt-2">
           <small v-if="(!nameDuplicate)"><b>닉네임</b></small>
           <small v-else-if="(nameDuplicate)" style="color:red;"><b>중복된 닉네임입니다.</b></small>
@@ -44,7 +43,6 @@
           <input type="text" class="form-control" id="password" placeholder="Password" v-model="name" @keyup="nameCheck">
           <label for="floatingPassword">Nickname</label>
         </div>
-              
         <button class="w-100 btn btn-lg btn-dark mt-3" type="submit" @click="signup">회원가입</button>
       </form>
     </div>
@@ -108,12 +106,6 @@ export default {
         this.nameDuplicate = false;
       }
     },
-
-    // passwordRuleCheck() {
-    //   if(!this.rule.test(this.password)) {
-    //     console.log('비밀번호 규칙 위반');
-    //   }
-    // }
   }
 
 }
