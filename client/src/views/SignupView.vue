@@ -11,7 +11,6 @@
           <input type="email" class="form-control" id="id" placeholder="name@example.com" v-model="email" @keyup="emailCheck">
           <label for="floatingInput">Email address</label>
         </div>
-        
         <div class="mt-2">
           <small><b>비밀번호</b></small>
         </div>
@@ -24,7 +23,6 @@
             <b>비밀번호는 영문자와 숫자가 1개 이상, 총 6자 이상이어햐 합니다.</b>
           </small>
         </div>
-        
         <div class="mt-2">
           <small><b>비밀번호 확인</b></small>
         </div>
