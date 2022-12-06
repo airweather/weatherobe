@@ -25,7 +25,6 @@ const server = app.listen(3000, ()=> {
 let sql = require('./sql.js');
 
 fs.watchFile(__dirname + '/sql.js', (curr, prev) => {
-  console.log('sql변경');
   delete require.cache[require.resolve('./sql.js')];
   sql = require('./sql.js');
 });
@@ -41,7 +40,6 @@ const db = {
 const dbPool = require('mysql').createPool(db);
 
 app.post('/upload/:name/:fileName', async (request, res) => {
-  console.log('post');
   let {
     name,
     fileName
@@ -69,7 +67,6 @@ app.post('/upload/:name/:fileName', async (request, res) => {
 });
 
 app.get('/download/:name/:fileName', (request, res) => {
-  console.log('image load');
   const {
     name,
     fileName
@@ -194,7 +191,6 @@ app.post('/api/signout', async (request, res) => {
     res.send(err)
   }
 });
-
 
 app.post('/apirole/:alias', async (request, res) => {
   if(!request.session.email) {
