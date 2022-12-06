@@ -14,7 +14,6 @@
         <div class="mt-1 float-start">
           <router-link to="/signup" style="text-decoration:none;color:black"><small>회원가입</small></router-link>
         </div>
-      
         <button class="w-100 btn btn-lg btn-dark mt-3" type="submit" @click="loginSubmit">로그인</button>
         <button class="w-100 btn btn-lg"><img :src="kakaoLoginImg" alt="" @click="kakaoLogin"></button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
@@ -38,20 +37,16 @@ export default {
       e.preventDefault();
       this.userData.email = this.email;
       this.userData.password = this.password;
-      
       const loginData = await this.$api("/api/getLogin", {param:[this.email, this.password]});
       if(loginData.email) {
         alert(`로그인 성공 : 안녕하세요 ${loginData.name} 님`);
-        //store의 user에 loginData 입력
         this.$store.commit("user", loginData);
         this.$router.push('/');
       }
       else {
-        console.log(loginData);
          alert('로그인 실패 : ID와 비밀번호를 확인해주세요')
       }
     },
-    
     kakaoLogin() {
       window.Kakao.Auth.login({
         scope:'profile_nickname, account_email, gender',
@@ -65,16 +60,13 @@ export default {
         url:'/v2/user/me',
         success: res => {
           const kakao_account = res.kakao_account;
-          console.log(kakao_account);
           this.login(kakao_account);
-          
           alert("카카오 로그인 성공!");
         }
       });
     },
     async login(kakao_account) {
       const pass = Math.floor(Math.random()*1000000000).toString();
-      console.log(pass);
       await this.$api("/api/kakaoLogin", {
         param: [
           {email:kakao_account.email, name:kakao_account.profile.nickname, password:pass, sso:0,},
@@ -83,8 +75,6 @@ export default {
       });
       this.$store.commit("user", kakao_account);
     },
-    
   }
-
 }
 </script>
