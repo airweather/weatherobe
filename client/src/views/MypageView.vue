@@ -62,7 +62,6 @@ export default {
     this.rule = new RegExp(this.passwordRule);
     this.email = this.$store.state.user.email; 
     this.name = this.$store.state.user.name; 
-    console.log(this.$store.state.user);
   },
   mounted() {
     
@@ -98,7 +97,6 @@ export default {
       const confirm = prompt(`정말 탈퇴하시겠습니까? \n My Wardrobe의 모든 데이터가 삭제됩니다. \n 원하시면 닉네임을 입력해주세요.`);
       if(confirm === this.$store.state.user.name) {
         const withdrawal = await this.$api("/api/signout", {param:[this.email, this.name]});
-        console.log(withdrawal);
         this.$store.commit("user", {});
         alert('탈퇴가 완료되었습니다.');
         this.$router.push('/');
@@ -106,7 +104,6 @@ export default {
       else{
         return alert('닉네임을 다시 입력해주세요');
       }
-      console.log(prompt);
     },
   }
 
