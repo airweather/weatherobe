@@ -18,7 +18,6 @@
                 <label for="dropzoneFile" style="width: 100px;border-radius: 10px; cursor: pointer;">Push</label>
                 <input type="file" id="dropzoneFile" class="dropzoneFile" @change="uploadFile($event.target.files)">
               </div>
-              
             </div>
             <div v-if="image" class="card img fluid" style="width: 25rem; border:none; opacity: 0.5;">
               <div class="position-absolute top-0 end-0" style="cursor:pointer;" @click="deleteImage()"><h1>X</h1></div>
@@ -53,7 +52,6 @@
                     <input type="text" class="form-control" v-model="top">
                   </div>
                 </div>
-                
                 <div class="mb-3 row">
                   <label class="col-sm-3 col-form-label">하의</label>
                   <div class="col-md-9">
@@ -67,14 +65,11 @@
                     <input type="text" class="form-control" v-model="shoes">
                   </div>
                 </div>
-                
-                <div class="mb-3 row">
                   <label class="col-sm-3 col-form-label">악세사리</label>
                   <div class="col-md-9">
                     <input type="text" class="form-control" v-model="acc">
                   </div>
                 </div>
-  
                 <div class="mb-3 row">
                   <label class="col-sm-3 col-form-label">내용</label>
                   <div class="col-md-9">
@@ -84,7 +79,6 @@
               </div>
             </div>
           </div>
-          
           <div class="col-xl-1"></div>
         </div>
         <button class="btn btn-lg btn-dark mt-3" type="submit" @click="edit" style="width: 300px;border-radius: 10px;">수정완료</button>
@@ -170,8 +164,6 @@
           return alert("이미지 업로드 실패했습니다. 다시 시도하세요.");
         }
         alert("이미지가 업로드 되었습니다.");
-        setTimeout(() => {
-        }, 1000);
       },
       async uploadFile(files) {
         let fileName = "";
@@ -181,7 +173,6 @@
           fileName = date + files[0].name;
           this.image = fileName;
           data = await this.$base64(files[0]);
-          console.log('filename : ',fileName);
         }
         const { error } = await this.$api(`/upload/${this.name}/${fileName}`, { data });
         this.image = fileName;
@@ -189,8 +180,6 @@
           return alert("이미지 업로드 실패했습니다. 다시 시도하세요.");
         }
         alert("이미지가 업로드 되었습니다.");
-        setTimeout(() => {
-        }, 1000);
       },
       deleteImage() {
         const confirmed = confirm('정말 삭제하시겠습니까?');
