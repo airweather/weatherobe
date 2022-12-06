@@ -25,9 +25,6 @@
               <img :src="`/download/${name}/${image}`">
             </div>
           </div>
-         
-  
-  
           <div class="col-xl-1"></div>
           <div class="col-md-auto">
             <div class="card" style="width: 25rem; border:none">
@@ -116,30 +113,21 @@
         dailyLookId:''
       }
     },
-   
     created() {
       this.dailyLookId = this.$route.query.id;
-      console.log(this.$route.query.id)
       this.getDailyLookInfo();
-
       this.email = this.$store.state.user.email;
       if(this.$store.state.user.name) {
         this.name = this.$store.state.user.name}
-        
       else {
         this.name = this.$store.state.user.profile.nickname;}
-        
     },
-    
     methods: {
       async getDailyLookInfo() {
         let dailyLookInfo = await this.$api("/api/getInfo", {param:[this.dailyLookId]});
         if(dailyLookInfo.length > 0) {
             this.dailyLookInfo = dailyLookInfo[0];
         }
-        console.log(this.dailyLookInfo)
-        console.log(dailyLookInfo.email)
-
         this.id = dailyLookInfo[0].id;
         this.email = dailyLookInfo[0].email;
         this.name = dailyLookInfo[0].name;
@@ -152,7 +140,6 @@
         this.acc = dailyLookInfo[0].acc;
         this.memo = dailyLookInfo[0].memo;
         this.image = dailyLookInfo[0].image;
-        
         },
       toggleActive () {
         if(this.active) {
@@ -161,13 +148,8 @@
         else{
           this.active = true;
         }
-        
-        console.log(this.active);
-        console.log()
       },
-  
       async dropUploadFile(e) {
-  
         if(this.active) {
           this.active = false;
         }
@@ -175,19 +157,15 @@
           this.active = true;
         }
         const files = e.dataTransfer.files
-        console.log('files : ' , files);
         let fileName = "";
         let data = null;
         if (files) {
           const date = Date.now();
           fileName = date + files[0].name;
-          // this.image = fileName;
           data = await this.$base64(files[0]);
-          console.log('filename : ',fileName);
         }
         const { error } = await this.$api(`/upload/${this.name}/${fileName}`, { data });
         this.image = fileName;
-  
         if (error) {
           return alert("이미지 업로드 실패했습니다. 다시 시도하세요.");
         }
@@ -195,9 +173,7 @@
         setTimeout(() => {
         }, 1000);
       },
-  
       async uploadFile(files) {
-        console.log('name:',this.name);
         let fileName = "";
         let data = null;
         if (files) {
@@ -215,21 +191,16 @@
         alert("이미지가 업로드 되었습니다.");
         setTimeout(() => {
         }, 1000);
-  
       },
-  
       deleteImage() {
         const confirmed = confirm('정말 삭제하시겠습니까?');
         if (confirmed) {
           this.$api(`/api/delete/${this.name}/${this.image}`);
           this.image = null;
         } 
-        
       },
-      
       async edit(e) {
         e.preventDefault();
-        console.log(this.date, this.weather, this.temperature, this.top, this.bottom, this.shoes, this.acc, this.memo, this.image)
         if(!this.image) return alert('이미지는 반드시 등록해 주세요');
         await this.$api("/api/editInfo",{param:[this.date, this.weather, this.temperature, this.top, this.bottom, this.shoes, this.acc, this.memo, this.image, this.id]});
         alert('등록 완료.')
