@@ -30,22 +30,18 @@ export default {
     if(this.user.email === undefined) {
       this.$router.push({path:'/'});
     }
-    
   },
   created() {
     this.getMyWardrobe();
-    // console.log(this.myWardrobeList)
   },
   methods: {
     async getMyWardrobe() {
       let myWardrobe = await this.$api("/api/getMyWardrobe", {param:[this.$store.state.user.email]})
-      console.log(myWardrobe);
       this.myWardrobeList = myWardrobe
     },
     toInfoPage(look) {
       this.$router.push({path:'/info', query:{id:look.id, name:look.name, image:look.image}})
     }
   }
-  
 }
 </script>
