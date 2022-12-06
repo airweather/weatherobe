@@ -49,7 +49,6 @@
   </header>
   <router-view/>
   <footer class="container mt-5">
-    <!-- <p class="float-start">{{location}}에서 접속 중</p> -->
     <p class="float-end"><a href="#" >WEATHEROBE</a></p>
     <p>&copy; 2017–2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
   </footer>
@@ -66,21 +65,16 @@ export default {
       searchImg: require('./assets/search2.png'),
       mypageImg: require('./assets/mypage.png'),
       writeImg: require('./assets/write.png'),
-      location : "",
+     
     }
   },
-  mounted() {
-    // this.getLocation()
-  },
+ 
   computed: {
     user() {
       return this.$store.state.user;
     }
   },
   methods: {
-    // logout() {
-    //   this.$api("/api/logout", {});
-    // },
     logout() {
       if(this.$store.state.user.sso === 0) {
         window.Kakao.Auth.logout((response) => {
@@ -93,39 +87,8 @@ export default {
       }
       alert('로그아웃');
     },
-    getLocation() {
-      if (navigator.geolocation) { // GPS를 지원하면
-       navigator.geolocation.getCurrentPosition(function(pos) {
-          const lat = pos.coords.latitude;
-          const lon = pos.coords.longitude;
-          console.log('위도 : ' + lat);
-          console.log('경도: ' + lon);
-          const KAKAO_REST_API_KEY = "b5aa8055a9b11c87fd0d8a07035ce3c3";
-
-          if (lat && lon) {
-            axios.get(
-              `https://dapi.kakao.com/v2/local/geo/coord2regioncode.json?x=${lon}&y=${lat}`,
-              { headers: { Authorization: `KakaoAK ${KAKAO_REST_API_KEY}` } }
-            )
-            .then(function(result) {
-              //법정동 기준으로 동단위의 값을 가져온다
-              location = result.data.documents[1].region_2depth_name + " " + result.data.documents[1].region_3depth_name;
-              this.location = location;
-            })
-          }
-        }, function(error) {
-          console.error(error);
-        }, {
-          enableHighAccuracy: false, maximumAge: 0, timeout: Infinity
-        });
-      } else {
-        alert('GPS를 지원하지 않습니다');
-      }
-    }
-  }
 }
 </script>
-
 
 <style>
 #app {
