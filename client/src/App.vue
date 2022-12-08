@@ -56,7 +56,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
   data() {
     return {
@@ -65,11 +64,9 @@ export default {
       searchImg: require('./assets/search2.png'),
       mypageImg: require('./assets/mypage.png'),
       writeImg: require('./assets/write.png'),
-     
     }
   },
- 
-  computed: {
+ computed: {
     user() {
       return this.$store.state.user;
     }
