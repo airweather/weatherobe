@@ -4,8 +4,6 @@ const app = express();
 const session = require('express-session');
 const fs = require('fs');
 
-edit
-
 app.use(session({
   secret: 'secret code',
   resave: false,
